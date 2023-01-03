@@ -1,3 +1,8 @@
-export const getContacts = state => state.persistedReducer.contacts;
+export const getContacts = state => state.contacts.items
 
-export const getFilter = state => state.persistedReducer.filter;
+export const getIsLoading = state => state.contacts.isLoading;
+
+export const getError = state => state.contacts.error;
+
+
+export const getFilter = state => state.filter

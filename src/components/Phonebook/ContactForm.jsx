@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input, Button } from './Styled/ContactForm.styled';
-import { addContact } from 'components/redux/slices/contactSlice';
+import { addContact } from 'components/redux/operation';
+
 import { getContacts } from 'components/redux/selectors';
 
 const ContactForm = () => {
@@ -11,14 +12,19 @@ const ContactForm = () => {
     event.preventDefault();
     const form = event.target;
     const name = form.elements.text.value;
-    const value = form.elements.phone.value;
-    const names = contacts.map(contact => contact.name);
+    const phone = form.elements.phone.value;
+    const contactsNames = contacts.map(contact => contact.name);
 
-    if (names.includes(name)) {
+    const data = {
+      name: name,
+      phone: phone,
+    };
+
+    if (contactsNames.includes(name)) {
       alert('This name is already exists');
       return;
     }
-    dispatch(addContact(name, value));
+    dispatch(addContact(data));
     form.reset();
   };
 
